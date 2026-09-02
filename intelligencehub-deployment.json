@@ -3639,7 +3639,7 @@
       },
       "redundancy" : {
         "backup" : {
-          "enabled" : true,
+          "enabled" : false,
           "primary" : {
             "uri" : "http://localhost:45248",
             "pingIntervalSeconds" : 1,
@@ -3649,8 +3649,8 @@
         }
       },
       "expressionEngine" : {
-        "allowExpressionEval" : false,
-        "allowEnvironmentVariables" : false,
+        "allowExpressionEval" : true,
+        "allowEnvironmentVariables" : true,
         "expressionEngineTimeoutSeconds" : 10,
         "hubBindingName" : "hub",
         "allowExpressionImports" : true
