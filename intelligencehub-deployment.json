@@ -3639,12 +3639,12 @@
       },
       "redundancy" : {
         "backup" : {
-          "enabled" : false,
+          "enabled" : true,
           "primary" : {
-            "uri" : "",
-            "pingIntervalSeconds" : 10,
+            "uri" : "http://localhost:45248",
+            "pingIntervalSeconds" : 1,
             "pingAttempts" : 1,
-            "pingRequestTimeoutSeconds" : 10
+            "pingRequestTimeoutSeconds" : 1
           }
         }
       },
@@ -3653,7 +3653,7 @@
         "allowEnvironmentVariables" : false,
         "expressionEngineTimeoutSeconds" : 10,
         "hubBindingName" : "hub",
-        "allowExpressionImports" : false
+        "allowExpressionImports" : true
       },
       "backup" : {
         "mode" : "disabled",
