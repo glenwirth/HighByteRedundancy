@@ -3535,8 +3535,8 @@
     "users" : [ {
       "name" : "administrator",
       "credentials" : {
-        "salt" : "/Wj7ZA71dYnqqI/YlJLnlg==",
-        "hashedPassword" : "/lhhykaRqMMzJQSdOhUSMZ29liAAAjcZA8J8Kc4MphtO5IcvHRQY7wbYTQcQUvvkcvmif0cWwWTcbIYZHRT56g=="
+        "salt" : "MY0lz49ZNCrekYIr+3IMKw==",
+        "hashedPassword" : "HfRnSP8hiGfTn7srQDo58HRLgNEbg4y7qOKTOqZTBvIPppHrcmxs5wU1mpPUNc+OnNMYcGilngLXIEzgmkqunQ=="
       },
       "policyVersion" : 1,
       "roles" : [ "admin" ],
@@ -3661,7 +3661,7 @@
         "repo" : {
           "type" : "git",
           "name" : "HubBackup",
-          "uri" : "https://github.com/glenwirth/HighByteBackup.git",
+          "uri" : "https://github.com/glenwirth/HighByteRedundancy.git",
           "author" : "Glen Wirth",
           "email" : "glen.wirth@highbyte.com",
           "auth" : {
