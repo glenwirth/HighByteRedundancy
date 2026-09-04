@@ -1,0 +1,3685 @@
+{
+  "productInfo" : {
+    "company" : "HighByte",
+    "product" : "IntelligenceHub",
+    "version" : "4.5.0",
+    "build" : "2026.8.14.399",
+    "stage" : "Release"
+  },
+  "project" : {
+    "version" : 14,
+    "connections" : [ {
+      "name" : "AMRsAndProductionLine_MQTT",
+      "uri" : "mqtt://localhost:1885",
+      "tags" : [ "AMRsAndProductionLine" ],
+      "writes" : {
+        "flattenModeledValues" : false
+      },
+      "writeThrottle" : {
+        "enabled" : false,
+        "maxBatchSizePerTarget" : 1000,
+        "batchDelay" : {
+          "duration" : 20,
+          "units" : "Milliseconds"
+        }
+      },
+      "subscriptions" : { },
+      "storeForward" : {
+        "enabled" : false,
+        "maxEntries" : 100,
+        "waitOnFailureInterval" : {
+          "duration" : 1,
+          "units" : "Seconds"
+        }
+      },
+      "settings" : {
+        "connectionTimeoutSeconds" : 10,
+        "keepAliveSeconds" : 60,
+        "requestTimeoutMS" : 5000,
+        "cleanSession" : true,
+        "ssl" : false,
+        "redundantBrokers" : [ ],
+        "inputDiscovery" : "#",
+        "maxInflight" : 1000,
+        "mcpEnabled" : "enabled",
+        "maxMessagesReceived" : 0
+      }
+    }, {
+      "name" : "Locations_MSSQL",
+      "uri" : "jdbc.sqlserver://52.10.6.4:1433",
+      "tags" : [ "AMRsAndProductionLine" ],
+      "writes" : {
+        "flattenModeledValues" : false
+      },
+      "writeThrottle" : {
+        "enabled" : false,
+        "maxBatchSizePerTarget" : 1000,
+        "batchDelay" : {
+          "duration" : 20,
+          "units" : "Milliseconds"
+        }
+      },
+      "subscriptions" : { },
+      "storeForward" : {
+        "enabled" : false,
+        "maxEntries" : 100,
+        "waitOnFailureInterval" : {
+          "duration" : 1,
+          "units" : "Seconds"
+        }
+      },
+      "settings" : {
+        "database" : " KnowledgeBase",
+        "username" : "highbyte",
+        "strategy" : {
+          "type" : "default"
+        },
+        "password" : {
+          "type" : "Encrypted",
+          "value" : {
+            "keyId" : "76WRCZJFwkfWeN0geqRnMg==",
+            "iv" : "W36nEGL0tefu1mrzjvIiug==",
+            "ciphertext" : "NaI1rjMlvD8f4uCBK10spQ=="
+          }
+        }
+      }
+    }, {
+      "name" : "ProductionLine_OPC_UA",
+      "uri" : "opc.tcp://52.10.6.4:49320",
+      "tags" : [ "AMRsAndProductionLine" ],
+      "writes" : {
+        "flattenModeledValues" : false
+      },
+      "writeThrottle" : {
+        "enabled" : false,
+        "maxBatchSizePerTarget" : 1000,
+        "batchDelay" : {
+          "duration" : 20,
+          "units" : "Milliseconds"
+        }
+      },
+      "subscriptions" : {
+        "subscriptionRate" : {
+          "duration" : 1,
+          "units" : "Seconds"
+        }
+      },
+      "storeForward" : {
+        "enabled" : false,
+        "maxEntries" : 100,
+        "waitOnFailureInterval" : {
+          "duration" : 1,
+          "units" : "Seconds"
+        }
+      },
+      "settings" : {
+        "security" : "None",
+        "authentication" : {
+          "type" : "Anonymous"
+        },
+        "connectTimeoutSeconds" : 5,
+        "requestTimeoutMS" : 5000,
+        "maxItemsPerRead" : 512,
+        "maxItemsPerWrite" : 256,
+        "certificateKeyPair" : "app-certificate-private-key",
+        "sessionName" : "",
+        "identifierMode" : "NodeId",
+        "mcpEnabled" : "enabled"
+      }
+    }, {
+      "name" : "Weather_MQTT",
+      "uri" : "mqtt://localhost:1885",
+      "tags" : [ "WeatherPlot" ],
+      "writes" : {
+        "flattenModeledValues" : false
+      },
+      "writeThrottle" : {
+        "enabled" : false,
+        "maxBatchSizePerTarget" : 1000,
+        "batchDelay" : {
+          "duration" : 20,
+          "units" : "Milliseconds"
+        }
+      },
+      "subscriptions" : { },
+      "storeForward" : {
+        "enabled" : false,
+        "maxEntries" : 100,
+        "waitOnFailureInterval" : {
+          "duration" : 1,
+          "units" : "Seconds"
+        }
+      },
+      "settings" : {
+        "connectionTimeoutSeconds" : 10,
+        "keepAliveSeconds" : 60,
+        "requestTimeoutMS" : 5000,
+        "cleanSession" : true,
+        "ssl" : false,
+        "redundantBrokers" : [ ],
+        "maxInflight" : 1000,
+        "inputDiscovery" : "#",
+        "mcpEnabled" : "enabled",
+        "maxMessagesReceived" : 0
+      }
+    }, {
+      "name" : "Weather_RestAPI",
+      "uri" : "rest.client://Weather",
+      "tags" : [ "WeatherPlot" ],
+      "writes" : {
+        "flattenModeledValues" : false
+      },
+      "writeThrottle" : {
+        "enabled" : false,
+        "maxBatchSizePerTarget" : 1000,
+        "batchDelay" : {
+          "duration" : 20,
+          "units" : "Milliseconds"
+        }
+      },
+      "subscriptions" : { },
+      "storeForward" : {
+        "enabled" : false,
+        "maxEntries" : 100,
+        "waitOnFailureInterval" : {
+          "duration" : 1,
+          "units" : "Seconds"
+        }
+      },
+      "settings" : {
+        "authentication" : {
+          "type" : "None",
+          "options" : { }
+        },
+        "baseURL" : "https://api.weather.gov/"
+      }
+    } ],
+    "conditions" : [ ],
+    "inputs" : [ {
+      "name" : "Topic",
+      "connection" : "AMRsAndProductionLine_MQTT",
+      "type" : "mqtt",
+      "qualifier" : {
+        "inputType" : "LastPublish",
+        "payloadType" : "json",
+        "qos" : 0,
+        "topic" : "{{this.Topic}}",
+        "includeTopic" : false
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "inline",
+        "model" : {
+          "name" : "params",
+          "tags" : [ ],
+          "attributes" : [ {
+            "attributeType" : "Internal",
+            "name" : "Topic",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "defaultValue" : "Weather/Boston",
+            "internalType" : {
+              "variant" : "String"
+            }
+          } ],
+          "modelVersion" : ""
+        }
+      }
+    }, {
+      "name" : "Locations",
+      "connection" : "Locations_MSSQL",
+      "type" : "jdbc.sqlserver",
+      "qualifier" : {
+        "type" : "query",
+        "query" : "select top (1) * from Locations where Id > {{this.Id}} and (AltPathNumber = {{this.AltPathNumber}} or AltPathNumber = 0) order by Id"
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "inline",
+        "model" : {
+          "name" : "params",
+          "tags" : [ ],
+          "attributes" : [ {
+            "attributeType" : "Internal",
+            "name" : "AltPathNumber",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "defaultValue" : "{{this.AltPathNumber}}",
+            "internalType" : {
+              "variant" : "String"
+            }
+          }, {
+            "attributeType" : "Internal",
+            "name" : "Id",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "defaultValue" : "{{this.Id}}",
+            "internalType" : {
+              "variant" : "String"
+            }
+          } ],
+          "modelVersion" : ""
+        }
+      }
+    }, {
+      "name" : "ProductionTransactionExample",
+      "connection" : "Locations_MSSQL",
+      "type" : "jdbc.sqlserver",
+      "qualifier" : {
+        "type" : "query",
+        "query" : "select * from ProductionTransactionExample order by ProductionID"
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "EmptyParameters"
+      }
+    }, {
+      "name" : "ProductionLine",
+      "connection" : "ProductionLine_OPC_UA",
+      "type" : "opc.tcp",
+      "qualifier" : {
+        "dataType" : "Auto",
+        "type" : "Branch",
+        "identifier" : {
+          "type" : "NodeId",
+          "namespaceIndex" : "2",
+          "identifierType" : "String",
+          "value" : "ProductionLine"
+        }
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "EmptyParameters"
+      }
+    }, {
+      "name" : "ProductionLine_PLC_1",
+      "connection" : "ProductionLine_OPC_UA",
+      "type" : "opc.tcp",
+      "qualifier" : {
+        "type" : "Branch",
+        "identifier" : {
+          "type" : "NodeId",
+          "namespaceIndex" : "2",
+          "identifierType" : "String",
+          "value" : "ProductionLine.PLC_1"
+        },
+        "cacheInterval" : {
+          "duration" : 1,
+          "units" : "Hours"
+        },
+        "maxDepth" : 1,
+        "browseVariableNodes" : false,
+        "ignoreBadQuality" : false,
+        "isComplex" : true
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "EmptyParameters"
+      }
+    }, {
+      "name" : "ProductionLine_PLC_1_Humidity",
+      "connection" : "ProductionLine_OPC_UA",
+      "type" : "opc.tcp",
+      "qualifier" : {
+        "type" : "Tag",
+        "identifier" : {
+          "type" : "NodeId",
+          "namespaceIndex" : "2",
+          "identifierType" : "String",
+          "value" : "ProductionLine.PLC_1.Humidity"
+        },
+        "samplingInterval" : {
+          "duration" : 0,
+          "units" : "Seconds"
+        },
+        "isComplex" : true
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "EmptyParameters"
+      }
+    }, {
+      "name" : "Forecast",
+      "connection" : "Weather_MQTT",
+      "type" : "mqtt",
+      "qualifier" : {
+        "payloadType" : "json",
+        "qos" : 0,
+        "topic" : "Weather/{{this.Location}}",
+        "inputType" : "LastPublish",
+        "includeTopic" : false,
+        "type" : "Tag"
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "inline",
+        "model" : {
+          "name" : "params",
+          "tags" : [ ],
+          "attributes" : [ {
+            "attributeType" : "Internal",
+            "name" : "Location",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "internalType" : {
+              "variant" : "String"
+            }
+          } ],
+          "modelVersion" : ""
+        }
+      }
+    }, {
+      "name" : "ForecastURL",
+      "connection" : "Weather_RestAPI",
+      "type" : "rest.client",
+      "qualifier" : {
+        "acceptType" : "*/*",
+        "method" : "GET",
+        "contentType" : "application/json",
+        "includeMetadata" : false,
+        "endpointURL" : "/points/{{this.Lat}},{{this.Long}}",
+        "isFile" : false,
+        "type" : "Tag"
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "inline",
+        "model" : {
+          "name" : "params",
+          "tags" : [ ],
+          "attributes" : [ {
+            "attributeType" : "Internal",
+            "name" : "Long",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "defaultValue" : "{{this.Long}}",
+            "internalType" : {
+              "variant" : "String"
+            }
+          }, {
+            "attributeType" : "Internal",
+            "name" : "Lat",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "defaultValue" : "{{this.Lat}}",
+            "internalType" : {
+              "variant" : "String"
+            }
+          } ],
+          "modelVersion" : ""
+        }
+      }
+    }, {
+      "name" : "HourlyForecast",
+      "connection" : "Weather_RestAPI",
+      "type" : "rest.client",
+      "qualifier" : {
+        "acceptType" : "*/*",
+        "method" : "GET",
+        "contentType" : "application/json",
+        "includeMetadata" : false,
+        "isFile" : false,
+        "endpointURL" : "/gridpoints/{{this.gridId}}/{{this.gridX}},{{this.gridY}}/forecast/hourly",
+        "type" : "Tag"
+      },
+      "cacheLifetime" : {
+        "enabled" : false
+      },
+      "template" : {
+        "type" : "Off"
+      },
+      "referenceMap" : [ ],
+      "parameters" : {
+        "type" : "inline",
+        "model" : {
+          "name" : "params",
+          "tags" : [ ],
+          "attributes" : [ {
+            "attributeType" : "Internal",
+            "name" : "gridX",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "defaultValue" : "{{this.gridX}}",
+            "internalType" : {
+              "variant" : "String"
+            }
+          }, {
+            "attributeType" : "Internal",
+            "name" : "gridY",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "defaultValue" : "{{this.gridY}}",
+            "internalType" : {
+              "variant" : "String"
+            }
+          }, {
+            "attributeType" : "Internal",
+            "name" : "gridId",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "defaultValue" : "{{this.gridId}}",
+            "internalType" : {
+              "variant" : "String"
+            }
+          } ],
+          "modelVersion" : ""
+        }
+      }
+    } ],
+    "outputs" : [ ],
+    "modeling" : {
+      "models" : [ {
+        "name" : "Current",
+        "description" : "Created from forecast JSON.",
+        "tags" : [ "WeatherPlot" ],
+        "attributes" : [ {
+          "attributeType" : "Internal",
+          "name" : "Time",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Temperature",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Int64"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "WindSpeed",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "WindDirection",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Forecast",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "Forecast",
+        "description" : "Created from forecast JSON.",
+        "tags" : [ "WeatherPlot" ],
+        "attributes" : [ {
+          "attributeType" : "Object",
+          "name" : "Periods",
+          "nullable" : false,
+          "required" : false,
+          "array" : true,
+          "attributes" : [ {
+            "attributeType" : "Internal",
+            "name" : "Time",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "internalType" : {
+              "variant" : "String"
+            }
+          }, {
+            "attributeType" : "Internal",
+            "name" : "Temperature",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "internalType" : {
+              "variant" : "Int64"
+            }
+          }, {
+            "attributeType" : "Internal",
+            "name" : "WindSpeed",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "internalType" : {
+              "variant" : "String"
+            }
+          }, {
+            "attributeType" : "Internal",
+            "name" : "WindDirection",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "internalType" : {
+              "variant" : "String"
+            }
+          }, {
+            "attributeType" : "Internal",
+            "name" : "Forecast",
+            "nullable" : false,
+            "required" : false,
+            "array" : false,
+            "internalType" : {
+              "variant" : "String"
+            }
+          } ]
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "Locations",
+        "tags" : [ "AMRsAndProductionLine" ],
+        "attributes" : [ {
+          "attributeType" : "Internal",
+          "name" : "Login",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Modeled",
+          "name" : "Locations",
+          "nullable" : false,
+          "required" : false,
+          "array" : true,
+          "model" : "LocationsDetail"
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "LocationsDetail",
+        "tags" : [ "AMRsAndProductionLine" ],
+        "attributes" : [ {
+          "attributeType" : "Internal",
+          "name" : "Timestamp",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "SectorId",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "X",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Int64"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Y",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Int64"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Z",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Int64"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Interval",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "UInt64"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Battery",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "UInt64"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "IsMoving",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "defaultValue" : true,
+          "internalType" : {
+            "variant" : "Boolean"
+          }
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "Position",
+        "tags" : [ "WeatherPlot" ],
+        "attributes" : [ {
+          "attributeType" : "Internal",
+          "name" : "Latitude",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Longitude",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "SensorData",
+        "tags" : [ "AMRsAndProductionLine" ],
+        "attributes" : [ {
+          "attributeType" : "Internal",
+          "name" : "Login",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Modeled",
+          "name" : "SensorData",
+          "nullable" : false,
+          "required" : false,
+          "array" : true,
+          "model" : "SensorDataDetail"
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "SensorDataDetail",
+        "tags" : [ "AMRsAndProductionLine" ],
+        "attributes" : [ {
+          "attributeType" : "Internal",
+          "name" : "Timestamp",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Quantity",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Value",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Unit",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "DataType",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "ValueOK",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "defaultValue" : true,
+          "internalType" : {
+            "variant" : "Boolean"
+          }
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "Weather",
+        "tags" : [ "WeatherPlot" ],
+        "attributes" : [ {
+          "attributeType" : "Modeled",
+          "name" : "CurrentWeather",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "model" : "WeatherPeriod"
+        }, {
+          "attributeType" : "Modeled",
+          "name" : "WeatherForecast",
+          "nullable" : false,
+          "required" : false,
+          "array" : true,
+          "model" : "WeatherPeriod"
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "WeatherForecast",
+        "description" : "Created from forecast JSON.",
+        "tags" : [ "WeatherPlot" ],
+        "attributes" : [ {
+          "attributeType" : "Internal",
+          "name" : "Time",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Temperature",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Int64"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "WindSpeed",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "WindDirection",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Forecast",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "String"
+          }
+        } ],
+        "modelVersion" : ""
+      }, {
+        "name" : "WeatherPeriod",
+        "tags" : [ "WeatherPlot" ],
+        "attributes" : [ {
+          "attributeType" : "Internal",
+          "name" : "Time",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Temperature",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "WindSpeed",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "WindDirection",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        }, {
+          "attributeType" : "Internal",
+          "name" : "Forecast",
+          "nullable" : false,
+          "required" : false,
+          "array" : false,
+          "internalType" : {
+            "variant" : "Any"
+          }
+        } ],
+        "modelVersion" : ""
+      } ],
+      "instances" : [ {
+        "name" : "Current_Instance",
+        "tags" : [ "WeatherPlot" ],
+        "model" : "Current",
+        "rootValueAs" : "Object",
+        "template" : {
+          "type" : "Off"
+        },
+        "executeMode" : "V4",
+        "initExpression" : "",
+        "attributes" : [ {
+          "name" : "Time",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Input",
+              "name" : "Topic",
+              "path" : ".CurrentWeather.Time",
+              "params" : {
+                "Topic" : "Weather/{{this.Location}}"
+              },
+              "connectionName" : "AMRsAndProductionLine_MQTT"
+            }
+          }
+        }, {
+          "name" : "Temperature",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Input",
+              "name" : "Topic",
+              "path" : ".CurrentWeather.Temperature",
+              "params" : {
+                "Topic" : "Weather/{{this.Location}}"
+              },
+              "connectionName" : "AMRsAndProductionLine_MQTT"
+            }
+          }
+        }, {
+          "name" : "WindSpeed",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Input",
+              "name" : "Topic",
+              "path" : ".CurrentWeather.WindSpeed",
+              "params" : {
+                "Topic" : "Weather/{{this.Location}}"
+              },
+              "connectionName" : "AMRsAndProductionLine_MQTT"
+            }
+          }
+        }, {
+          "name" : "WindDirection",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Input",
+              "name" : "Topic",
+              "path" : ".CurrentWeather.WindDirection",
+              "params" : {
+                "Topic" : "Weather/{{this.Location}}"
+              },
+              "connectionName" : "AMRsAndProductionLine_MQTT"
+            }
+          }
+        }, {
+          "name" : "Forecast",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Input",
+              "name" : "Topic",
+              "path" : ".CurrentWeather.Forecast",
+              "params" : {
+                "Topic" : "Weather/{{this.Location}}"
+              },
+              "connectionName" : "AMRsAndProductionLine_MQTT"
+            }
+          }
+        } ],
+        "parameters" : {
+          "type" : "inline",
+          "model" : {
+            "name" : "params",
+            "tags" : [ ],
+            "attributes" : [ {
+              "attributeType" : "Internal",
+              "name" : "Location",
+              "nullable" : false,
+              "required" : false,
+              "array" : false,
+              "defaultValue" : "Boston",
+              "internalType" : {
+                "variant" : "String"
+              }
+            } ],
+            "modelVersion" : ""
+          }
+        }
+      }, {
+        "name" : "Forecast_Instance",
+        "tags" : [ "WeatherPlot" ],
+        "model" : "Forecast",
+        "rootValueAs" : "Object",
+        "template" : {
+          "type" : "Off"
+        },
+        "executeMode" : "V4",
+        "initExpression" : "",
+        "attributes" : [ {
+          "name" : "Periods",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Input",
+              "name" : "Topic",
+              "path" : ".WeatherForecast[]",
+              "params" : {
+                "Topic" : "Weather/{{this.Location}}"
+              },
+              "connectionName" : "AMRsAndProductionLine_MQTT"
+            }
+          },
+          "attributes" : [ {
+            "name" : "Time",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Input",
+                "name" : "Topic",
+                "path" : ".WeatherForecast[0].Time",
+                "params" : {
+                  "Topic" : null
+                },
+                "connectionName" : "AMRsAndProductionLine_MQTT"
+              }
+            }
+          }, {
+            "name" : "Temperature",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Input",
+                "name" : "Topic",
+                "path" : ".WeatherForecast[0].Temperature",
+                "params" : {
+                  "Topic" : null
+                },
+                "connectionName" : "AMRsAndProductionLine_MQTT"
+              }
+            }
+          }, {
+            "name" : "WindSpeed",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Input",
+                "name" : "Topic",
+                "path" : ".WeatherForecast[0].WindSpeed",
+                "params" : {
+                  "Topic" : null
+                },
+                "connectionName" : "AMRsAndProductionLine_MQTT"
+              }
+            }
+          }, {
+            "name" : "WindDirection",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Input",
+                "name" : "Topic",
+                "path" : ".WeatherForecast[0].WindDirection",
+                "params" : {
+                  "Topic" : null
+                },
+                "connectionName" : "AMRsAndProductionLine_MQTT"
+              }
+            }
+          }, {
+            "name" : "Forecast",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Input",
+                "name" : "Topic",
+                "path" : ".WeatherForecast[0].Forecast",
+                "params" : {
+                  "Topic" : null
+                },
+                "connectionName" : "AMRsAndProductionLine_MQTT"
+              }
+            }
+          } ]
+        } ],
+        "parameters" : {
+          "type" : "inline",
+          "model" : {
+            "name" : "params",
+            "tags" : [ ],
+            "attributes" : [ {
+              "attributeType" : "Internal",
+              "name" : "Location",
+              "nullable" : false,
+              "required" : false,
+              "array" : false,
+              "defaultValue" : "Boston",
+              "internalType" : {
+                "variant" : "String"
+              }
+            } ],
+            "modelVersion" : ""
+          }
+        }
+      }, {
+        "name" : "Locations_Instance",
+        "tags" : [ "AMRsAndProductionLine" ],
+        "model" : "Locations",
+        "rootValueAs" : "Object",
+        "template" : {
+          "type" : "Off"
+        },
+        "executeMode" : "V4",
+        "initExpression" : "",
+        "attributes" : [ {
+          "name" : "Login",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Empty"
+            }
+          }
+        }, {
+          "name" : "Locations",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Input",
+              "name" : "Topic",
+              "path" : ".Locations",
+              "params" : {
+                "Topic" : "{{this.Topic}}"
+              },
+              "connectionName" : "AMRsAndProductionLine_MQTT"
+            }
+          },
+          "attributes" : [ {
+            "name" : "Timestamp",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "SectorId",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "X",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "Y",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "Z",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "Interval",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "Battery",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "IsMoving",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          } ]
+        } ],
+        "parameters" : {
+          "type" : "inline",
+          "model" : {
+            "name" : "params",
+            "tags" : [ ],
+            "attributes" : [ {
+              "attributeType" : "Internal",
+              "name" : "Topic",
+              "nullable" : false,
+              "required" : false,
+              "array" : false,
+              "defaultValue" : "Site1/AMRs/AMR1",
+              "internalType" : {
+                "variant" : "String"
+              }
+            } ],
+            "modelVersion" : ""
+          }
+        }
+      }, {
+        "name" : "Position_Instance",
+        "tags" : [ "WeatherPlot" ],
+        "model" : "Position",
+        "rootValueAs" : "Object",
+        "template" : {
+          "type" : "Off"
+        },
+        "executeMode" : "V4",
+        "initExpression" : "",
+        "attributes" : [ {
+          "name" : "Latitude",
+          "expression" : {
+            "type" : "JavaScript",
+            "expression" : "return {{this.Latitude}};"
+          }
+        }, {
+          "name" : "Longitude",
+          "expression" : {
+            "type" : "JavaScript",
+            "expression" : "return {{this.Longitude}};"
+          }
+        } ],
+        "parameters" : {
+          "type" : "inline",
+          "model" : {
+            "name" : "params",
+            "tags" : [ ],
+            "attributes" : [ {
+              "attributeType" : "Internal",
+              "name" : "Latitude",
+              "nullable" : false,
+              "required" : false,
+              "array" : false,
+              "internalType" : {
+                "variant" : "String"
+              }
+            }, {
+              "attributeType" : "Internal",
+              "name" : "Longitude",
+              "nullable" : false,
+              "required" : false,
+              "array" : false,
+              "internalType" : {
+                "variant" : "String"
+              }
+            } ],
+            "modelVersion" : ""
+          }
+        }
+      }, {
+        "name" : "SensorData_Instance",
+        "tags" : [ "AMRsAndProductionLine" ],
+        "model" : "SensorData",
+        "rootValueAs" : "Object",
+        "template" : {
+          "type" : "Off"
+        },
+        "executeMode" : "V4",
+        "initExpression" : "",
+        "attributes" : [ {
+          "name" : "Login",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Empty"
+            }
+          }
+        }, {
+          "name" : "SensorData",
+          "expression" : {
+            "type" : "Reference",
+            "reference" : {
+              "type" : "Input",
+              "name" : "Topic",
+              "path" : ".SensorData",
+              "params" : {
+                "Topic" : "{{this.Topic}}"
+              },
+              "connectionName" : "AMRsAndProductionLine_MQTT"
+            }
+          },
+          "attributes" : [ {
+            "name" : "Timestamp",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "Quantity",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "Value",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "Unit",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "DataType",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          }, {
+            "name" : "ValueOK",
+            "expression" : {
+              "type" : "Reference",
+              "reference" : {
+                "type" : "Empty"
+              }
+            }
+          } ]
+        } ],
+        "parameters" : {
+          "type" : "inline",
+          "model" : {
+            "name" : "params",
+            "tags" : [ ],
+            "attributes" : [ {
+              "attributeType" : "Internal",
+              "name" : "Topic",
+              "nullable" : false,
+              "required" : false,
+              "array" : false,
+              "defaultValue" : "Site1/ProductionLine/PLC_1",
+              "internalType" : {
+                "variant" : "String"
+              }
+            } ],
+            "modelVersion" : ""
+          }
+        }
+      } ]
+    },
+    "pipelines" : [ {
+      "name" : "GetForecastForLocation",
+      "tags" : [ "WeatherPlot" ],
+      "inputStages" : [ "SmartQuery" ],
+      "stages" : [ {
+        "name" : "SmartQuery",
+        "display" : {
+          "position" : {
+            "x" : 240,
+            "y" : 0
+          }
+        },
+        "description" : "Queries the Weather namespace for forecast data based on the Location parameter passed in from the API trigger. Results are returned as a flat list.",
+        "config" : {
+          "type" : ".SmartQueryConfig",
+          "query" : {
+            "from" : [ "Weather.{{event.value.Location}}.Forecast" ],
+            "where" : "",
+            "select" : {
+              "what" : [ "value" ],
+              "as" : "List",
+              "delim" : "."
+            }
+          },
+          "breakup" : false,
+          "handleGoodNoData" : false,
+          "goodNoDataOutputs" : [ ]
+        },
+        "outputs" : [ "Return" ]
+      }, {
+        "name" : "Return",
+        "display" : {
+          "position" : {
+            "x" : 736,
+            "y" : -3
+          }
+        },
+        "description" : "Returns the forecast query results to the API caller.",
+        "config" : {
+          "type" : ".ReturnConfig"
+        },
+        "outputs" : [ ]
+      } ],
+      "trackActivity" : true,
+      "queueSize" : 10000,
+      "triggers" : [ {
+        "name" : "APITrigger",
+        "display" : {
+          "position" : {
+            "x" : -450,
+            "y" : 0
+          }
+        },
+        "description" : "Exposes the pipeline as an API endpoint. Accepts a Location string parameter to determine which weather forecast data to retrieve.",
+        "config" : {
+          "type" : ".TriggerApi",
+          "enabled" : true,
+          "parameters" : {
+            "type" : "inline",
+            "model" : {
+              "name" : "params",
+              "tags" : [ ],
+              "attributes" : [ {
+                "attributeType" : "Internal",
+                "name" : "Location",
+                "nullable" : false,
+                "required" : false,
+                "array" : false,
+                "internalType" : {
+                  "variant" : "String"
+                }
+              } ],
+              "modelVersion" : ""
+            }
+          }
+        }
+      } ],
+      "errorHandler" : {
+        "type" : "default"
+      }
+    }, {
+      "name" : "GetHourlyForecast",
+      "tags" : [ "WeatherPlot" ],
+      "inputStages" : [ "SmartQuery" ],
+      "stages" : [ {
+        "name" : "ReadURL",
+        "display" : {
+          "position" : {
+            "x" : 1140,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReadConfig",
+          "failureOutputs" : [ ],
+          "reference" : {
+            "type" : "Input",
+            "name" : "ForecastURL",
+            "path" : "",
+            "params" : {
+              "Long" : "{{event.value.Position.Longitude}}",
+              "Lat" : "{{event.value.Position.Latitude}}"
+            },
+            "connectionName" : "Weather_RestAPI"
+          },
+          "handleGoodNoData" : false,
+          "goodNoDataOutputs" : [ ]
+        },
+        "outputs" : [ "Grids" ]
+      }, {
+        "name" : "Weather_MQTT",
+        "display" : {
+          "position" : {
+            "x" : 5894,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".DynamicWriteConfig",
+          "failureOutputs" : [ ],
+          "connectionReference" : "{{Connection.Weather_MQTT}}",
+          "eventPath" : "",
+          "connectionType" : "mqtt",
+          "qualifier" : {
+            "qos" : 0,
+            "namedRoot" : false,
+            "retained" : true,
+            "breakupArrays" : false,
+            "topic" : "{{event.metadata.breakupPath}}",
+            "filterList" : [ "_model", "_timestamp" ]
+          },
+          "qualifierExpression" : "",
+          "writeReturn" : "completion"
+        },
+        "outputs" : [ ]
+      }, {
+        "name" : "PeriodsToTop",
+        "display" : {
+          "position" : {
+            "x" : 3840,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".JavaScriptTransformConfig",
+          "transformExpression" : "stage.setValue(event.metadata.Periods.properties.periods);"
+        },
+        "outputs" : [ "ForEach" ]
+      }, {
+        "name" : "Properties",
+        "display" : {
+          "position" : {
+            "x" : 2490,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".AttributeFilterConfig",
+          "filterOption" : "exclude",
+          "filterList" : [ {
+            "filterType" : "exactPathFilter",
+            "filterText" : "properties.periods"
+          } ],
+          "retainAsMetadata" : true,
+          "metadataKey" : "Periods"
+        },
+        "outputs" : [ "ModelCurrentWeather" ]
+      }, {
+        "name" : "ModelCurrentWeather",
+        "display" : {
+          "position" : {
+            "x" : 2940,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "WeatherPeriod",
+          "objectName" : "",
+          "initExpression" : "",
+          "attributes" : [ {
+            "name" : "Time",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.metadata.Periods.properties.periods[0].startTime;"
+            }
+          }, {
+            "name" : "Temperature",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.metadata.Periods.properties.periods[0].temperature;"
+            }
+          }, {
+            "name" : "WindSpeed",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.metadata.Periods.properties.periods[0].windSpeed;"
+            }
+          }, {
+            "name" : "WindDirection",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.metadata.Periods.properties.periods[0].windDirection;"
+            }
+          }, {
+            "name" : "Forecast",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.metadata.Periods.properties.periods[0].shortForecast;"
+            }
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "CurrentWeather" ]
+      }, {
+        "name" : "Weather",
+        "display" : {
+          "position" : {
+            "x" : 5440,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "Weather",
+          "objectName" : "",
+          "initExpression" : "",
+          "attributes" : [ {
+            "name" : "CurrentWeather",
+            "expression" : {
+              "type" : "PipelineStageReference",
+              "stageReference" : "event.metadata.CurrentWeather"
+            },
+            "attributes" : [ {
+              "name" : "Time",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            }, {
+              "name" : "Temperature",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            }, {
+              "name" : "WindSpeed",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            }, {
+              "name" : "WindDirection",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            }, {
+              "name" : "Forecast",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            } ]
+          }, {
+            "name" : "WeatherForecast",
+            "expression" : {
+              "type" : "PipelineStageReference",
+              "stageReference" : "event.value"
+            },
+            "attributes" : [ {
+              "name" : "Time",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            }, {
+              "name" : "Temperature",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            }, {
+              "name" : "WindSpeed",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            }, {
+              "name" : "WindDirection",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            }, {
+              "name" : "Forecast",
+              "expression" : {
+                "type" : "PipelineStageReference",
+                "stageReference" : ""
+              }
+            } ]
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "Weather_MQTT" ]
+      }, {
+        "name" : "ForEach",
+        "display" : {
+          "position" : {
+            "x" : 4290,
+            "y" : -105
+          },
+          "size" : {
+            "width" : 1000,
+            "height" : 300
+          },
+          "metadata" : { }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ForEachLoopConfig",
+          "failureOutputs" : [ ],
+          "loopOutputs" : [ "ModelWeatherForcast" ],
+          "stageTimeout" : {
+            "duration" : 30,
+            "units" : "Seconds"
+          }
+        },
+        "outputs" : [ "Weather" ]
+      }, {
+        "name" : "Locations",
+        "display" : {
+          "position" : {
+            "x" : 690,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".BreakupConfig",
+          "breakupType" : "object",
+          "depth" : 2
+        },
+        "outputs" : [ "ReadURL" ]
+      }, {
+        "name" : "ReadForecast",
+        "display" : {
+          "position" : {
+            "x" : 2040,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReadConfig",
+          "failureOutputs" : [ ],
+          "reference" : {
+            "type" : "Input",
+            "name" : "HourlyForecast",
+            "path" : "",
+            "params" : {
+              "gridX" : "{{event.value.properties.gridX}}",
+              "gridY" : "{{event.value.properties.gridY}}",
+              "gridId" : "{{event.value.properties.gridId}}"
+            },
+            "connectionName" : "Weather_RestAPI"
+          },
+          "handleGoodNoData" : false,
+          "goodNoDataOutputs" : [ ]
+        },
+        "outputs" : [ "Properties" ]
+      }, {
+        "name" : "SmartQuery",
+        "display" : {
+          "position" : {
+            "x" : 240,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".SmartQueryConfig",
+          "query" : {
+            "from" : [ "Weather.*.Position.**" ],
+            "where" : "",
+            "select" : {
+              "what" : [ "value", "path", "name", "model", "timestamp" ],
+              "as" : "Hierarchy",
+              "delim" : "\\"
+            }
+          },
+          "breakup" : false,
+          "handleGoodNoData" : false,
+          "goodNoDataOutputs" : [ ]
+        },
+        "outputs" : [ "Locations" ]
+      }, {
+        "name" : "Grids",
+        "display" : {
+          "position" : {
+            "x" : 1590,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".AttributeFilterConfig",
+          "filterOption" : "include",
+          "filterList" : [ {
+            "filterType" : "exactPathFilter",
+            "filterText" : "properties.gridId"
+          }, {
+            "filterType" : "exactPathFilter",
+            "filterText" : "properties.gridX"
+          }, {
+            "filterType" : "exactPathFilter",
+            "filterText" : "properties.gridY"
+          } ],
+          "retainAsMetadata" : false,
+          "metadataKey" : "filtered"
+        },
+        "outputs" : [ "ReadForecast" ]
+      }, {
+        "name" : "CurrentWeather",
+        "display" : {
+          "position" : {
+            "x" : 3390,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".AttributeFilterConfig",
+          "filterOption" : "exclude",
+          "filterList" : [ {
+            "filterType" : "exactPathFilter",
+            "filterText" : "Time"
+          }, {
+            "filterType" : "exactPathFilter",
+            "filterText" : "Temperature"
+          }, {
+            "filterType" : "exactPathFilter",
+            "filterText" : "WindSpeed"
+          }, {
+            "filterType" : "exactPathFilter",
+            "filterText" : "WindDirection"
+          }, {
+            "filterType" : "exactPathFilter",
+            "filterText" : "Forecast"
+          } ],
+          "retainAsMetadata" : true,
+          "metadataKey" : "CurrentWeather"
+        },
+        "outputs" : [ "PeriodsToTop" ]
+      }, {
+        "name" : "ModelWeatherForcast",
+        "display" : {
+          "position" : {
+            "x" : 200,
+            "y" : 105
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "WeatherPeriod",
+          "objectName" : "",
+          "initExpression" : "",
+          "attributes" : [ {
+            "name" : "Time",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.value.startTime;"
+            }
+          }, {
+            "name" : "Temperature",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.value.temperature;"
+            }
+          }, {
+            "name" : "WindSpeed",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.value.windSpeed;"
+            }
+          }, {
+            "name" : "WindDirection",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.value.windDirection;"
+            }
+          }, {
+            "name" : "Forecast",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.value.shortForecast;"
+            }
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "Return" ]
+      }, {
+        "name" : "Return",
+        "display" : {
+          "position" : {
+            "x" : 650,
+            "y" : 105
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReturnConfig"
+        },
+        "outputs" : [ ]
+      } ],
+      "trackActivity" : true,
+      "queueSize" : 10000,
+      "triggers" : [ {
+        "name" : "CronTrigger",
+        "display" : {
+          "position" : {
+            "x" : -450,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".TriggerCron",
+          "enabled" : true,
+          "logging" : "on",
+          "schedule" : "15 * * * *",
+          "timezone" : "local"
+        }
+      }, {
+        "name" : "PolledTrigger",
+        "display" : {
+          "position" : {
+            "x" : -419,
+            "y" : 172
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".TriggerPolled",
+          "enabled" : true,
+          "interval" : {
+            "duration" : 1,
+            "units" : "Days"
+          },
+          "mode" : "interval"
+        }
+      } ],
+      "errorHandler" : {
+        "type" : "default"
+      }
+    }, {
+      "name" : "GetLocations",
+      "tags" : [ "WeatherPlot" ],
+      "inputStages" : [ "SmartQuery" ],
+      "stages" : [ {
+        "name" : "SmartQuery",
+        "display" : {
+          "position" : {
+            "x" : 240,
+            "y" : 0
+          }
+        },
+        "description" : "Queries the namespace for all paths matching Weather.*.Position and returns them as a flat list.",
+        "config" : {
+          "type" : ".SmartQueryConfig",
+          "query" : {
+            "from" : [ "Weather.*.Position" ],
+            "where" : "",
+            "select" : {
+              "what" : [ "path" ],
+              "as" : "List",
+              "delim" : "."
+            }
+          },
+          "breakup" : false,
+          "handleGoodNoData" : false,
+          "goodNoDataOutputs" : [ ]
+        },
+        "outputs" : [ "GetLocation" ]
+      }, {
+        "name" : "GetLocation",
+        "display" : {
+          "position" : {
+            "x" : 690,
+            "y" : 0
+          }
+        },
+        "description" : "Transforms each path by extracting the second segment as the Location using a JSONata expression.",
+        "config" : {
+          "type" : ".JSONataTransformConfig",
+          "transformExpression" : "event.value.{\r\n    \"Location\": $split(_path, \".\")[1]\r\n}"
+        },
+        "outputs" : [ "Return" ]
+      }, {
+        "name" : "Return",
+        "display" : {
+          "position" : {
+            "x" : 1140,
+            "y" : 0
+          }
+        },
+        "description" : "Returns the transformed location data to the API caller.",
+        "config" : {
+          "type" : ".ReturnConfig"
+        },
+        "outputs" : [ ]
+      } ],
+      "trackActivity" : true,
+      "queueSize" : 10000,
+      "triggers" : [ {
+        "name" : "APITrigger",
+        "display" : {
+          "position" : {
+            "x" : -450,
+            "y" : 0
+          }
+        },
+        "description" : "Exposes the pipeline as an API endpoint that can be called externally to retrieve weather locations.",
+        "config" : {
+          "type" : ".TriggerApi",
+          "enabled" : true,
+          "parameters" : {
+            "type" : "EmptyParameters"
+          }
+        }
+      } ],
+      "errorHandler" : {
+        "type" : "default"
+      }
+    }, {
+      "name" : "Site1AMR1",
+      "tags" : [ "AMRsAndProductionLine" ],
+      "inputStages" : [ "setMetadata" ],
+      "stages" : [ {
+        "name" : "MQTT",
+        "display" : {
+          "position" : {
+            "x" : 3690,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".DynamicWriteConfig",
+          "failureOutputs" : [ ],
+          "connectionReference" : "{{Connection.AMRsAndProductionLine_MQTT}}",
+          "eventPath" : "",
+          "connectionType" : "mqtt",
+          "qualifier" : {
+            "topic" : "Site1/AMRs/{{event.metadata.login}}",
+            "qos" : 0,
+            "namedRoot" : false,
+            "retained" : true,
+            "breakupArrays" : false,
+            "type" : "Tag"
+          },
+          "qualifierExpression" : "",
+          "writeReturn" : "completion"
+        },
+        "outputs" : [ ]
+      }, {
+        "name" : "setMetadata",
+        "display" : {
+          "position" : {
+            "x" : 240,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".JavaScriptTransformConfig",
+          "transformExpression" : "function randomExponential(lambda) {\r\n  return -Math.log(1 - Math.random()) / lambda;\r\n}\r\n\r\n// id and altPathNumber\r\nlet id = state.pipeline.get(\"lastId\", 0);\r\n\r\n// if id == 0\r\nif (id <= 0)\r\n{\r\n  state.pipeline.set(\"lastId\", id);\r\n  state.pipeline.set(\"altPathNumber\", 0);\r\n}\r\nlet altPathNumber = state.pipeline.get(\"altPathNumber\");\r\nid++;\r\nif (id >= 780)\r\n{\r\n  id = 1\r\n  let altPathProb = Math.random();\r\n  altPathNumber = 0\r\n  if (altPathProb >= 0.8) \r\n  {\r\n    altPathNumber = 2\r\n  }\r\n  else if (altPathProb >= 0.5)\r\n  {\r\n    altPathNumber = 1\r\n  }\r\n  state.pipeline.set(\"altPathNumber\", altPathNumber);\r\n}\r\nstage.setMetadata(\"altPathNumber\", altPathNumber);\r\nstage.setMetadata(\"id\", id);\r\n// battery\r\nlet battery = state.pipeline.get(\"battery\", 100);\r\nbattery = battery - randomExponential(1)\r\nif (battery < 1)\r\n{\r\n  battery = 100\r\n}\r\nstage.setMetadata(\"battery\", battery);\r\nstate.pipeline.set(\"battery\", battery);\r\n// login\r\nstage.setMetadata(\"login\", \"AMR1\");\r\nstage.setValue(event.value);"
+        },
+        "outputs" : [ "GetLocations" ]
+      }, {
+        "name" : "Locations",
+        "display" : {
+          "position" : {
+            "x" : 3240,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "Locations",
+          "objectName" : "",
+          "initExpression" : "",
+          "attributes" : [ {
+            "name" : "Login",
+            "expression" : {
+              "type" : "PipelineStageReference",
+              "stageReference" : ""
+            }
+          }, {
+            "name" : "Locations",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.value"
+            },
+            "attributes" : [ {
+              "name" : "Timestamp",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "SectorId",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "X",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Y",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Z",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Interval",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Battery",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "IsMoving",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            } ]
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "MQTT" ]
+      }, {
+        "name" : "GetLocations",
+        "display" : {
+          "position" : {
+            "x" : 690,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReadConfig",
+          "failureOutputs" : [ ],
+          "reference" : {
+            "type" : "Input",
+            "name" : "Locations",
+            "path" : "",
+            "params" : {
+              "AltPathNumber" : "{{event.metadata.altPathNumber}}",
+              "Id" : "{{event.metadata.id}}"
+            },
+            "connectionName" : "Locations_MSSQL"
+          },
+          "handleGoodNoData" : false,
+          "goodNoDataOutputs" : [ ]
+        },
+        "outputs" : [ "ForEach" ]
+      }, {
+        "name" : "ForEach",
+        "display" : {
+          "position" : {
+            "x" : 1140,
+            "y" : -150
+          },
+          "size" : {
+            "width" : 1950,
+            "height" : 390
+          },
+          "metadata" : { }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ForEachLoopConfig",
+          "failureOutputs" : [ ],
+          "loopOutputs" : [ "EachLocation" ],
+          "stageTimeout" : {
+            "duration" : 30,
+            "units" : "Seconds"
+          }
+        },
+        "outputs" : [ "Locations" ]
+      }, {
+        "name" : "LocationsDetail",
+        "display" : {
+          "position" : {
+            "x" : 1050,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "LocationsDetail",
+          "objectName" : "",
+          "initExpression" : "",
+          "attributes" : [ {
+            "name" : "Timestamp",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return Date.now()"
+            }
+          }, {
+            "name" : "SectorId",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return 1"
+            }
+          }, {
+            "name" : "X",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return ((event.value.X + (4*Math.random()-2)) * 1000) + parseInt(139000, 10)"
+            }
+          }, {
+            "name" : "Y",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return ((event.value.Y + (4*Math.random()-2)) * 1000) + parseInt(188000, 10)"
+            }
+          }, {
+            "name" : "Z",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return 0"
+            }
+          }, {
+            "name" : "Interval",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return 1"
+            }
+          }, {
+            "name" : "Battery",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.metadata.battery"
+            }
+          }, {
+            "name" : "IsMoving",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return true"
+            }
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "Return" ]
+      }, {
+        "name" : "EachLocation",
+        "display" : {
+          "position" : {
+            "x" : 150,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".BreakupConfig",
+          "breakupType" : "array",
+          "depth" : 1
+        },
+        "outputs" : [ "LocationsLastId" ]
+      }, {
+        "name" : "Return",
+        "display" : {
+          "position" : {
+            "x" : 1500,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReturnConfig"
+        },
+        "outputs" : [ ]
+      }, {
+        "name" : "LocationsLastId",
+        "display" : {
+          "position" : {
+            "x" : 600,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".JavaScriptTransformConfig",
+          "transformExpression" : "state.pipeline.set(\"lastId\", event.value.Id);\r\n\r\nstage.setValue(event.value);"
+        },
+        "outputs" : [ "LocationsDetail" ]
+      } ],
+      "trackActivity" : false,
+      "queueSize" : 10000,
+      "triggers" : [ {
+        "name" : "PolledTrigger",
+        "display" : {
+          "position" : {
+            "x" : -450,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".TriggerPolled",
+          "enabled" : true,
+          "interval" : {
+            "duration" : 1,
+            "units" : "Seconds"
+          },
+          "mode" : "continuous"
+        }
+      } ],
+      "errorHandler" : {
+        "type" : "default"
+      }
+    }, {
+      "name" : "Site1AMR2",
+      "tags" : [ "AMRsAndProductionLine" ],
+      "inputStages" : [ "setMetadata" ],
+      "stages" : [ {
+        "name" : "MQTT",
+        "display" : {
+          "position" : {
+            "x" : 3690,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".DynamicWriteConfig",
+          "failureOutputs" : [ ],
+          "connectionReference" : "{{Connection.AMRsAndProductionLine_MQTT}}",
+          "eventPath" : "",
+          "connectionType" : "mqtt",
+          "qualifier" : {
+            "topic" : "Site1/AMRs/{{event.metadata.login}}",
+            "qos" : 0,
+            "namedRoot" : false,
+            "retained" : true,
+            "breakupArrays" : false,
+            "type" : "Tag"
+          },
+          "qualifierExpression" : "",
+          "writeReturn" : "completion"
+        },
+        "outputs" : [ ]
+      }, {
+        "name" : "setMetadata",
+        "display" : {
+          "position" : {
+            "x" : 240,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".JavaScriptTransformConfig",
+          "transformExpression" : "function randomExponential(lambda) {\r\n  return -Math.log(1 - Math.random()) / lambda;\r\n}\r\n\r\n// id and altPathNumber\r\nlet id = state.pipeline.get(\"lastId\", 0);\r\n\r\n// if id == 0\r\nif (id <= 0)\r\n{\r\n  state.pipeline.set(\"lastId\", id);\r\n  state.pipeline.set(\"altPathNumber\", 0);\r\n}\r\nlet altPathNumber = state.pipeline.get(\"altPathNumber\");\r\nid++;\r\nif (id >= 780)\r\n{\r\n  id = 1\r\n  let altPathProb = Math.random();\r\n  altPathNumber = 0\r\n  if (altPathProb >= 0.8) \r\n  {\r\n    altPathNumber = 2\r\n  }\r\n  else if (altPathProb >= 0.5)\r\n  {\r\n    altPathNumber = 1\r\n  }\r\n  state.pipeline.set(\"altPathNumber\", altPathNumber);\r\n}\r\nstage.setMetadata(\"altPathNumber\", altPathNumber);\r\nstage.setMetadata(\"id\", id);\r\n// battery\r\nlet battery = state.pipeline.get(\"battery\", 100);\r\nbattery = battery - randomExponential(1)\r\nif (battery < 1)\r\n{\r\n  battery = 100\r\n}\r\nstage.setMetadata(\"battery\", battery);\r\nstate.pipeline.set(\"battery\", battery);\r\n// login\r\nstage.setMetadata(\"login\", \"AMR2\");\r\nstage.setValue(event.value);"
+        },
+        "outputs" : [ "GetLocations" ]
+      }, {
+        "name" : "Locations",
+        "display" : {
+          "position" : {
+            "x" : 3240,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "Locations",
+          "objectName" : "",
+          "initExpression" : "",
+          "attributes" : [ {
+            "name" : "Login",
+            "expression" : {
+              "type" : "PipelineStageReference",
+              "stageReference" : ""
+            }
+          }, {
+            "name" : "Locations",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.value"
+            },
+            "attributes" : [ {
+              "name" : "Timestamp",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "SectorId",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "X",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Y",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Z",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Interval",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Battery",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "IsMoving",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            } ]
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "MQTT" ]
+      }, {
+        "name" : "GetLocations",
+        "display" : {
+          "position" : {
+            "x" : 690,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReadConfig",
+          "failureOutputs" : [ ],
+          "reference" : {
+            "type" : "Input",
+            "name" : "Locations",
+            "path" : "",
+            "params" : {
+              "AltPathNumber" : "{{event.metadata.altPathNumber}}",
+              "Id" : "{{event.metadata.id}}"
+            },
+            "connectionName" : "Locations_MSSQL"
+          },
+          "handleGoodNoData" : false,
+          "goodNoDataOutputs" : [ ]
+        },
+        "outputs" : [ "ForEach" ]
+      }, {
+        "name" : "ForEach",
+        "display" : {
+          "position" : {
+            "x" : 1140,
+            "y" : -150
+          },
+          "size" : {
+            "width" : 1950,
+            "height" : 390
+          },
+          "metadata" : { }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ForEachLoopConfig",
+          "failureOutputs" : [ ],
+          "loopOutputs" : [ "EachLocation" ],
+          "stageTimeout" : {
+            "duration" : 30,
+            "units" : "Seconds"
+          }
+        },
+        "outputs" : [ "Locations" ]
+      }, {
+        "name" : "LocationsDetail",
+        "display" : {
+          "position" : {
+            "x" : 1050,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "LocationsDetail",
+          "objectName" : "",
+          "initExpression" : "",
+          "attributes" : [ {
+            "name" : "Timestamp",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return Date.now()"
+            }
+          }, {
+            "name" : "SectorId",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return 1"
+            }
+          }, {
+            "name" : "X",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return ((event.value.X + (4*Math.random()-2)) * 1000) + parseInt(139000, 10)"
+            }
+          }, {
+            "name" : "Y",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return ((event.value.Y + (4*Math.random()-2)) * 1000) + parseInt(188000, 10)"
+            }
+          }, {
+            "name" : "Z",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return 0"
+            }
+          }, {
+            "name" : "Interval",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return 1"
+            }
+          }, {
+            "name" : "Battery",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.metadata.battery"
+            }
+          }, {
+            "name" : "IsMoving",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return true"
+            }
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "Return" ]
+      }, {
+        "name" : "EachLocation",
+        "display" : {
+          "position" : {
+            "x" : 150,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".BreakupConfig",
+          "breakupType" : "array",
+          "depth" : 1
+        },
+        "outputs" : [ "LocationsLastId" ]
+      }, {
+        "name" : "Return",
+        "display" : {
+          "position" : {
+            "x" : 1500,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReturnConfig"
+        },
+        "outputs" : [ ]
+      }, {
+        "name" : "LocationsLastId",
+        "display" : {
+          "position" : {
+            "x" : 600,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEach"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".JavaScriptTransformConfig",
+          "transformExpression" : "state.pipeline.set(\"lastId\", event.value.Id);\r\n\r\nstage.setValue(event.value);"
+        },
+        "outputs" : [ "LocationsDetail" ]
+      } ],
+      "trackActivity" : false,
+      "queueSize" : 10000,
+      "triggers" : [ {
+        "name" : "PolledTrigger",
+        "display" : {
+          "position" : {
+            "x" : -450,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".TriggerPolled",
+          "enabled" : true,
+          "interval" : {
+            "duration" : 1,
+            "units" : "Seconds"
+          },
+          "mode" : "continuous"
+        }
+      } ],
+      "errorHandler" : {
+        "type" : "default"
+      }
+    }, {
+      "name" : "Site1ProductionLine",
+      "tags" : [ "AMRsAndProductionLine" ],
+      "inputStages" : [ "PLCsObjToArray" ],
+      "stages" : [ {
+        "name" : "PLCsObjToArray",
+        "display" : {
+          "position" : {
+            "x" : 240,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".JSONataTransformConfig",
+          "transformExpression" : "$spread(event.value)"
+        },
+        "outputs" : [ "ForEachPLC" ]
+      }, {
+        "name" : "ForEachPLC",
+        "display" : {
+          "position" : {
+            "x" : 690,
+            "y" : -300
+          },
+          "size" : {
+            "width" : 3600,
+            "height" : 690
+          },
+          "metadata" : { }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ForEachLoopConfig",
+          "failureOutputs" : [ ],
+          "loopOutputs" : [ "SetPLC" ],
+          "stageTimeout" : {
+            "duration" : 30,
+            "units" : "Seconds"
+          }
+        },
+        "outputs" : [ ]
+      }, {
+        "name" : "SensorDatasObjToArray",
+        "display" : {
+          "position" : {
+            "x" : 600,
+            "y" : 300
+          },
+          "metadata" : {
+            "parent" : "ForEachPLC"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".JSONataTransformConfig",
+          "transformExpression" : "$spread(event.value)"
+        },
+        "outputs" : [ "ForEachSensor" ]
+      }, {
+        "name" : "ForEachSensor",
+        "display" : {
+          "position" : {
+            "x" : 1050,
+            "y" : 150
+          },
+          "size" : {
+            "width" : 1050,
+            "height" : 390
+          },
+          "metadata" : {
+            "parent" : "ForEachPLC"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ForEachLoopConfig",
+          "failureOutputs" : [ ],
+          "loopOutputs" : [ "SensorDataDetail" ],
+          "stageTimeout" : {
+            "duration" : 30,
+            "units" : "Seconds"
+          }
+        },
+        "outputs" : [ "SensorData" ]
+      }, {
+        "name" : "MQTT",
+        "display" : {
+          "position" : {
+            "x" : 2700,
+            "y" : 300
+          },
+          "metadata" : {
+            "parent" : "ForEachPLC"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".DynamicWriteConfig",
+          "failureOutputs" : [ ],
+          "connectionReference" : "{{Connection.AMRsAndProductionLine_MQTT}}",
+          "eventPath" : "",
+          "connectionType" : "mqtt",
+          "qualifier" : {
+            "topic" : "Site1/ProductionLine/{{event.metadata.PLC}}",
+            "qos" : 0,
+            "namedRoot" : false,
+            "retained" : true,
+            "breakupArrays" : false,
+            "type" : "Tag"
+          },
+          "qualifierExpression" : "",
+          "writeReturn" : "completion"
+        },
+        "outputs" : [ "ReturnPLC" ]
+      }, {
+        "name" : "SensorData",
+        "display" : {
+          "position" : {
+            "x" : 2250,
+            "y" : 300
+          },
+          "metadata" : {
+            "parent" : "ForEachPLC"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "SensorData",
+          "objectName" : "",
+          "initExpression" : "",
+          "attributes" : [ {
+            "name" : "Login",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : ""
+            }
+          }, {
+            "name" : "SensorData",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return event.value"
+            },
+            "attributes" : [ {
+              "name" : "Timestamp",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Quantity",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Value",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "Unit",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "DataType",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            }, {
+              "name" : "ValueOK",
+              "expression" : {
+                "type" : "JavaScript",
+                "expression" : ""
+              }
+            } ]
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "MQTT" ]
+      }, {
+        "name" : "SetPLC",
+        "display" : {
+          "position" : {
+            "x" : 150,
+            "y" : 300
+          },
+          "metadata" : {
+            "parent" : "ForEachPLC"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".JavaScriptTransformConfig",
+          "transformExpression" : "const plc = Object.keys(event.value)[0];\r\nstage.setMetadata(\"PLC\", plc);\r\nstage.setValue(event.value[plc]);"
+        },
+        "outputs" : [ "SensorDatasObjToArray" ]
+      }, {
+        "name" : "ReturnPLC",
+        "display" : {
+          "position" : {
+            "x" : 3150,
+            "y" : 300
+          },
+          "metadata" : {
+            "parent" : "ForEachPLC"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReturnConfig"
+        },
+        "outputs" : [ ]
+      }, {
+        "name" : "ReturnSensorData",
+        "display" : {
+          "position" : {
+            "x" : 600,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEachSensor"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ReturnConfig"
+        },
+        "outputs" : [ ]
+      }, {
+        "name" : "SensorDataDetail",
+        "display" : {
+          "position" : {
+            "x" : 150,
+            "y" : 150
+          },
+          "metadata" : {
+            "parent" : "ForEachSensor"
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".ModelConfig",
+          "model" : "SensorDataDetail",
+          "objectName" : "",
+          "initExpression" : "variables.KeyName = Object.keys(event.value)[0];",
+          "attributes" : [ {
+            "name" : "Timestamp",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return Date.now()"
+            }
+          }, {
+            "name" : "Quantity",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return variables.KeyName;"
+            }
+          }, {
+            "name" : "Value",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "if (variables.KeyName == \"Temperature\")\r\n{\r\n    return Math.floor(event.value[variables.KeyName]);\r\n}\r\nelse\r\n{\r\n    return event.value[variables.KeyName];\r\n}\r\n"
+            }
+          }, {
+            "name" : "Unit",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "if (variables.KeyName == \"Pressure\")\r\n{\r\n    return \"Pa\";\r\n}\r\nelse if (variables.KeyName == \"Temperature\")\r\n{\r\n    return \"°C\";\r\n}\r\nelse \r\n{\r\n    return \"Ea\";\r\n}\r\n"
+            }
+          }, {
+            "name" : "DataType",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "if (variables.KeyName == \"Pressure\")\r\n{\r\n    return \"Double\";\r\n}\r\nelse if (variables.KeyName == \"Temperature\")\r\n{\r\n    return \"Int32\";\r\n}\r\nelse\r\n{\r\n    return \"String\";\r\n}\r\n\r\n"
+            }
+          }, {
+            "name" : "ValueOK",
+            "expression" : {
+              "type" : "JavaScript",
+              "expression" : "return true"
+            }
+          } ],
+          "expandArray" : false
+        },
+        "outputs" : [ "ReturnSensorData" ]
+      } ],
+      "trackActivity" : false,
+      "queueSize" : 10000,
+      "triggers" : [ {
+        "name" : "EventTrigger",
+        "display" : {
+          "position" : {
+            "x" : -450,
+            "y" : 0
+          }
+        },
+        "description" : "",
+        "config" : {
+          "type" : ".TriggerEvent",
+          "enabled" : true,
+          "reference" : {
+            "type" : "Input",
+            "name" : "ProductionLine",
+            "path" : "",
+            "params" : { },
+            "connectionName" : "ProductionLine_OPC_UA"
+          },
+          "outputMode" : "COMPRESSED"
+        }
+      } ],
+      "errorHandler" : {
+        "type" : "default"
+      }
+    } ],
+    "tags" : [ {
+      "name" : "AMRsAndProductionLine"
+    }, {
+      "name" : "WeatherPlot"
+    } ],
+    "functions" : [ ],
+    "namespace" : [ {
+      "type" : "local",
+      "id" : "f0132270-1227-4f4e-9e61-c7a0fc07d35d",
+      "name" : "Site1",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "cdefd10c-a5fc-4280-9229-3a512361d45f",
+      "name" : "AMRs",
+      "parentNamespaceId" : "f0132270-1227-4f4e-9e61-c7a0fc07d35d",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "f3773f6e-c64e-4d87-9abf-dccd4e630829",
+      "name" : "AMR1",
+      "parentNamespaceId" : "cdefd10c-a5fc-4280-9229-3a512361d45f",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Locations_Instance",
+        "path" : "",
+        "params" : {
+          "Topic" : "Site1/AMRs/AMR1"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "635c5a08-6832-4934-8a76-d236dceeb6c1",
+      "name" : "AMR2",
+      "parentNamespaceId" : "cdefd10c-a5fc-4280-9229-3a512361d45f",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Locations_Instance",
+        "path" : "",
+        "params" : {
+          "Topic" : "Site1/AMRs/AMR2"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "20b0482f-4ff3-4767-b40e-9fb8033acf83",
+      "name" : "ProductionLine",
+      "parentNamespaceId" : "f0132270-1227-4f4e-9e61-c7a0fc07d35d",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "cfccbee1-22d4-4799-9791-2c1703975273",
+      "name" : "PLC_1",
+      "parentNamespaceId" : "20b0482f-4ff3-4767-b40e-9fb8033acf83",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "SensorData_Instance",
+        "path" : "",
+        "params" : {
+          "Topic" : "Site1/ProductionLine/PLC_1"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "11327028-12a1-4f20-9969-532ba5ba9a73",
+      "name" : "PLC_2",
+      "parentNamespaceId" : "20b0482f-4ff3-4767-b40e-9fb8033acf83",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "SensorData_Instance",
+        "path" : "",
+        "params" : {
+          "Topic" : "Site1/ProductionLine/PLC_2"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "a428fcdd-b0d6-4d1f-b99f-3d32c7915a6a",
+      "name" : "PLC_3",
+      "parentNamespaceId" : "20b0482f-4ff3-4767-b40e-9fb8033acf83",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "SensorData_Instance",
+        "path" : "",
+        "params" : {
+          "Topic" : "Site1/ProductionLine/PLC_3"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "231533af-f65f-440b-8c18-f829cabdb82a",
+      "name" : "PLC_4",
+      "parentNamespaceId" : "20b0482f-4ff3-4767-b40e-9fb8033acf83",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "SensorData_Instance",
+        "path" : "",
+        "params" : {
+          "Topic" : "Site1/ProductionLine/PLC_4"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "282b5110-29fe-4cce-9f86-0f1c48d4ecff",
+      "name" : "Weather",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "5f79adce-1cdb-4518-88fd-f1b47103c255",
+      "name" : "Boston",
+      "parentNamespaceId" : "282b5110-29fe-4cce-9f86-0f1c48d4ecff",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "e12f7aa6-f363-4716-96ce-4de4c47b9882",
+      "name" : "Position",
+      "parentNamespaceId" : "5f79adce-1cdb-4518-88fd-f1b47103c255",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Position_Instance",
+        "path" : "",
+        "params" : {
+          "Latitude" : "42.3602",
+          "Longitude" : "-71.055"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "6e6b1f4b-603b-4604-b406-11e386e313d7",
+      "name" : "Current",
+      "parentNamespaceId" : "5f79adce-1cdb-4518-88fd-f1b47103c255",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Current_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Boston"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "455f5cb7-3f36-400c-9cf0-cca38db23a77",
+      "name" : "Forecast",
+      "parentNamespaceId" : "5f79adce-1cdb-4518-88fd-f1b47103c255",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Forecast_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Boston"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "5111d2f3-f23c-4b21-adf8-f9302218f4cf",
+      "name" : "Hollywood",
+      "parentNamespaceId" : "282b5110-29fe-4cce-9f86-0f1c48d4ecff",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "55360b5e-aac5-45be-a632-6650a51b9c6c",
+      "name" : "Position",
+      "parentNamespaceId" : "5111d2f3-f23c-4b21-adf8-f9302218f4cf",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Position_Instance",
+        "path" : "",
+        "params" : {
+          "Latitude" : "34.0934761",
+          "Longitude" : "-118.3349617"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "83a8f1fd-9182-410f-a0d7-dade9fb76318",
+      "name" : "Current",
+      "parentNamespaceId" : "5111d2f3-f23c-4b21-adf8-f9302218f4cf",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Current_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Boston"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "5fe21b9b-03ab-47f2-9278-7cc7a73057bc",
+      "name" : "Forecast",
+      "parentNamespaceId" : "5111d2f3-f23c-4b21-adf8-f9302218f4cf",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Forecast_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Hollywood"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "6ec3b689-ee5c-41e9-bf19-d91490ecbee4",
+      "name" : "MtWashington",
+      "parentNamespaceId" : "282b5110-29fe-4cce-9f86-0f1c48d4ecff",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "de726d98-44b2-4579-9957-3566076df22f",
+      "name" : "Position",
+      "parentNamespaceId" : "6ec3b689-ee5c-41e9-bf19-d91490ecbee4",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Position_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "MtWashington",
+          "Latitude" : "44.2707",
+          "Longitude" : "-71.3032"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "3326c0bd-ee54-4638-9d60-01a32c37c986",
+      "name" : "Forecast",
+      "parentNamespaceId" : "6ec3b689-ee5c-41e9-bf19-d91490ecbee4",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Forecast_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "MtWashington"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "542da204-d6de-4a76-859b-3af8887645da",
+      "name" : "Current",
+      "parentNamespaceId" : "3326c0bd-ee54-4638-9d60-01a32c37c986",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Current_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "MtWashington"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "51e6b7f4-46de-4917-9985-948b369d333e",
+      "name" : "Portland",
+      "parentNamespaceId" : "282b5110-29fe-4cce-9f86-0f1c48d4ecff",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "8e8b4c9e-f614-44b3-8bf5-1d56e7d9b3c8",
+      "name" : "Position",
+      "parentNamespaceId" : "51e6b7f4-46de-4917-9985-948b369d333e",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Position_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : null,
+          "Latitude" : "43.6602",
+          "Longitude" : "-70.2485"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "13a2d4ad-0ceb-403f-86bb-1285f9058897",
+      "name" : "Forecast",
+      "parentNamespaceId" : "51e6b7f4-46de-4917-9985-948b369d333e",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Forecast_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Portland"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "bd8b3cdd-023f-4939-aa78-e31f52af10e5",
+      "name" : "Current",
+      "parentNamespaceId" : "51e6b7f4-46de-4917-9985-948b369d333e",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Current_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "MtWashington"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "eabdacfe-00dd-4155-b38e-d8776a09dc40",
+      "name" : "Pittsburgh",
+      "parentNamespaceId" : "282b5110-29fe-4cce-9f86-0f1c48d4ecff",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Forecast_Instance",
+        "path" : "",
+        "params" : { }
+      }
+    }, {
+      "type" : "local",
+      "id" : "76dbe7fd-52f1-48e4-8c07-e8d3371d2021",
+      "name" : "Position",
+      "parentNamespaceId" : "eabdacfe-00dd-4155-b38e-d8776a09dc40",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Position_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Pittsburgh",
+          "Latitude" : "40.4416",
+          "Longitude" : "-80.0109"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "98d9295e-147b-4eb4-bc78-af251ce54bcb",
+      "name" : "Forecast",
+      "parentNamespaceId" : "eabdacfe-00dd-4155-b38e-d8776a09dc40",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Forecast_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Pittsburgh"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "a0811846-4e5a-4f0a-bffe-622d7505bf91",
+      "name" : "Current",
+      "parentNamespaceId" : "eabdacfe-00dd-4155-b38e-d8776a09dc40",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Current_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Pittsburgh"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "855686e6-5236-492e-8b4e-c9f40c0cad8d",
+      "name" : "Savannah",
+      "parentNamespaceId" : "282b5110-29fe-4cce-9f86-0f1c48d4ecff",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Empty"
+      }
+    }, {
+      "type" : "local",
+      "id" : "7a5b762e-5db0-46d5-be3b-1834d224d06c",
+      "name" : "Position",
+      "parentNamespaceId" : "855686e6-5236-492e-8b4e-c9f40c0cad8d",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Position_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Savannah",
+          "Latitude" : "32.0525",
+          "Longitude" : "-81.1025"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "88a43be5-3823-4069-a983-0c89d87a1137",
+      "name" : "Current",
+      "parentNamespaceId" : "855686e6-5236-492e-8b4e-c9f40c0cad8d",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Current_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Savannah"
+        }
+      }
+    }, {
+      "type" : "local",
+      "id" : "9b0c2158-5eb6-47ad-9664-7d9546e60c78",
+      "name" : "Forecast",
+      "parentNamespaceId" : "855686e6-5236-492e-8b4e-c9f40c0cad8d",
+      "metadata" : [ ],
+      "reference" : {
+        "type" : "Instance",
+        "name" : "Forecast_Instance",
+        "path" : "",
+        "params" : {
+          "Location" : "Savannah"
+        }
+      }
+    } ],
+    "lookupMap" : [ ],
+    "servers" : {
+      "i3x" : {
+        "historyReadPipeline" : {
+          "type" : "Empty"
+        },
+        "writePipeline" : {
+          "type" : "Empty"
+        }
+      }
+    }
+  },
+  "network" : {
+    "version" : 0,
+    "groups" : [ ],
+    "hubs" : [ ]
+  },
+  "accessControl" : {
+    "apiKeys" : [ ],
+    "version" : 0,
+    "roles" : [ {
+      "name" : "admin",
+      "policyVersion" : 1,
+      "claims" : [ {
+        "resources" : [ "*" ],
+        "actions" : [ "*" ]
+      } ],
+      "aliases" : [ ]
+    }, {
+      "name" : "default",
+      "policyVersion" : 1,
+      "claims" : [ {
+        "resources" : [ "*" ],
+        "actions" : [ "read" ]
+      }, {
+        "resources" : [ "connection", "instance", "pipeline" ],
+        "actions" : [ "*" ]
+      } ],
+      "aliases" : [ ]
+    } ],
+    "users" : [ {
+      "name" : "administrator",
+      "credentials" : {
+        "salt" : "++0SPO0/5oZ490o/6JRc3w==",
+        "hashedPassword" : "86OZYrW7K5xPygxZj5gJ1M0AQ/FAchGLeQG4k9xF6F+vlg/JOqMfGK+hOppY+CbEN682jqc+QbMTnYQYCvJ0rQ=="
+      },
+      "policyVersion" : 1,
+      "roles" : [ "admin" ],
+      "claims" : [ ]
+    } ]
+  },
+  "system" : {
+    "version" : 0,
+    "variables" : [ ],
+    "secrets" : [ ],
+    "certificates" : [ {
+      "alias" : "ssl-certificate-private-key",
+      "chain" : "MIIEQDCCAyigAwIBAgIIVYQpUwFY35owDQYJKoZIhvcNAQELBQAwTzEuMCwGA1UEAwwlSGlnaEJ5dGUvSW50ZWxsaWdlbmNlSHViQDBjZTRjNGU4OTVmZjEQMA4GA1UECgwHVW5rbm93bjELMAkGA1UEBhMCVVMwHhcNMjYwOTAxMTYwNTQ5WhcNMzEwODMxMTYwNTQ5WjBPMS4wLAYDVQQDDCVIaWdoQnl0ZS9JbnRlbGxpZ2VuY2VIdWJAMGNlNGM0ZTg5NWZmMRAwDgYDVQQKDAdVbmtub3duMQswCQYDVQQGEwJVUzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALvtK/Sm16Z5pN31nAmMX6vhtb3NCKnWPw95aYubefoqSNlTOCwPFzhThcLSrTFoXPfiXmUerCEYyRYrc8KRwz/5k1fEaIAEtyk9wM9zA6q5+gXEkrG8xiutWKzJfBBNAuvrNE+hR+zsi3MpZqpNczw0SaLX0YNtnn9EdK6Qv8h57h8NjsiAhvVCaWVChw75StdgFkvbJRmE/oi/2FKMuVzCOpm8lxF7zxJO6bomGQXqVR7yppz247+NS+07dhDCBvH8Ygwrsy/6iFfGfPdWMV2V68l9NoSSywXjG2MmnsHAt9u0+s9zU9Jx8m0VtyuH1IYwf200pQ3Q982SeFCt8QECAwEAAaOCAR4wggEaMEIGA1UdEQQ7MDmGKXVybjowY2U0YzRlODk1ZmY6SGlnaEJ5dGU6SW50ZWxsaWdlbmNlSHViggwwY2U0YzRlODk1ZmYwCwYDVR0PBAQDAgL0MB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAJBgNVHRMEAjAAMB0GA1UdDgQWBBSazkayBaskrtIaaVe5wYxq3ywkpzB+BgNVHSMEdzB1gBSazkayBaskrtIaaVe5wYxq3ywkp6FTpFEwTzEuMCwGA1UEAwwlSGlnaEJ5dGUvSW50ZWxsaWdlbmNlSHViQDBjZTRjNGU4OTVmZjEQMA4GA1UECgwHVW5rbm93bjELMAkGA1UEBhMCVVOCCFWEKVMBWN+aMA0GCSqGSIb3DQEBCwUAA4IBAQAlh8Gf7OKg2/+OqUBq1Kd2umHQdciPMtxYF5aFc4majG3CYmXozNz+ymmylJEOcXt297HcTGzhk0PZUf5p9u2ziNgSGdTOm/d+s4e00KqTnqbtZfVXVf8Js8JDD/3VrFjMloqJJp3/zJR6DLA5C3mydpugxPCKWzL92tdo01kkgDbW5ITrttjK06437bN6qj0H24tfR6P/4RQ2nn8KPII8ji4AzYqrgxIBOZm2tfkJHfCpGXZ76jBuVsrEokbyJHEK0c+2/Kzv5FxS8NJhFgsUmr3CTSSpiMMHcnE4gyYDqHYXIWdGysO3K9hIPmwFQVDrSjXyQRmMjnPWJiQN74wO",
+      "encryptKey" : {
+        "type" : "Encrypted",
+        "value" : {
+          "keyId" : "76WRCZJFwkfWeN0geqRnMg==",
+          "iv" : "uKwWf269CcbbRucS75YjVw==",
+          "ciphertext" : "py18YsCoVIH82/wx9NcStIOv7ORWZttyt/Q919r53AD5EqSVWU0GvJNxfC2EfshvjCIbPoNYOv89jsXE0QrTh/M70g/k+164rQ1IGJQGAAXsSDOqkGsYn2df4VyInRsKs7bzhuNGkALa+yIKDFL+zSs6S4ftAxXs+hMGX6IyjgAdv3bMpF97N6jvdruGK6VILDqK16N799V253jeUmo0AivOtgqIHNJ/7MKaduYfroBNJVLT/iDjyhzvtLvkgyqBhd/hYgUdUV9RS3rFupw4ZvZflMoIJBGAoQyzn1Xid9VicSXVdrA6ttFnSaZtgcmOQHrbbf9gn4jKwrAL8EjTVcTO1FZpALL3RhNpZMGbTeeFWyavGXsndPNnhGNWY/UVo2TX8oCznFy7dxwxbk5tNYYa0SU94t7eT4Fi2cE6Gi9BnY8jv3DgeWgE/R9YAhYmb0NqqjYnmkr8S+NO/YTngDDXxAb2Zu99T9vg6nwlfYNBakiUt1QWtcowsvGpV/s21+aKNXKh8gsorXIJaMU60Is+fnBx8zmOLqiTJQscPVrl3rfnuzqoTmpiR6aq/Fb/Bd2tcYQCdY9MHX44kMQFv2ktkyfzdVjUUwHodkB3XYfDpFXVavrUDG1FtsQzY1bEabkaFYbuNK671hpfbMdfs6UQf787LXSLO+KBU2IhlMBWZtbbZgHe91ynbhOnl7pY6nld8MPqjJ2+EScktoWQLvXaiEsywelz9qG2+u45ZpYzKkQttAqzCOZTpv6vxilHBQbukMO1iklhsvm1g0x1bVS59no3V/pTMK8a5e3dZndsUysS/eU/RqpHncqrZC+t9jIciZFn0mUmKGMqtM1H0biH9CI6BhOtjdValwJGq3G2WSF4Zc4KcaBH4GHwYJv0Yj+bI+DY2C3UHNM/Dwuwpr5WMgOdBJduDvSHq78ctWbSWnknqFK5BO7IbFtfUyKbDpg6EAcIwB2Ituqd/1zfOJcovwSHvxji1PXm37KOa99TvKJHQYWAVKkQBTeJfYV5Di2nhxOYAGKf4Yg23g06HsykD0faEzKBvEosr5xA8bu7T4dkcS6T6sb56qREvWoHTNApcZuRWfED31CCyb45l9l8AeqTskiODyxjIOlCK9kZD0SWPOjyqhGNnwCAlVyAfnnte2Se7Q347X3+ZkjoEovAhBAH2h6gvKyiVSj/63tavZ/1d9avPc9Re9szXAqaK2M+olCDPG+gj+tMNplGlZpz3A11nCdMFB9RGR/PQwBLUw9krjcx44Z3y5YLTFuvFs3xDIZcaVI0gUPmZo/E1/7qQmeT/FWR+mic3uO2CEfCg4u/c/9Gm2yhKzNNeiU9vkz/3THYWFz5tCoJAbOb2vGjn4Z/bfNrjJ9IwjEFSPJZ1c75EykhXvEI5yICCgugjdShv4kMMSSfHdKHIaPHTqeTKBECfAS9B+IOkGgDGzQSK/YViSEcwudWKoYmDKgcexLLveTPm5VzRfQo+gFiM7Kd8Yuh6IHV0DvRcy7Ka5PS5hL6/wmD23XLTquQyGdUxaueVmdXOYYFGOLOV5IwtvgIHo6gio5/vxJ0chT3sARDV5SBKfOUasl+NJA8WCUpSFiFRN0TcFCV/ZvYTVNBYEH2riiHYA6WByih5wkGhHEpnNeMP0HPIFvR9cscfD5p5HhMPkl4nMgPNst51eGd3Wik3ZgRb8SHwECzn0k0FGskrNGPgLUSKW6+1Wp9nienFdp4SR1GTWwyIZ1dNWjzDtD2camMFBZ0QKZVLCQc1DzaQYzIM4YCRb3Vw3go1XDBxhiTdxXBdbRnbMNaKAqJbMrdi3JKEOU63CULvYlaH7MOpdJTmOkQSZQRv1kMh+aym9HlNN7EO3l7g1WLk5yDnPFyv0S0rtc8zq0KdvHQ1kcH310ZVY2yrpHiaZahSUgWDDrpGRsXWD6qPT1nnNrmbBsyhc7u3Bo8wdMZHkarq3sXOMY931vF1qBLLQbptAy7/eafvr/Oi4iXQLEHOMGLW4gjUaeN7QnwpDyZ+9bvS6qp97487a+hGulLHhQxH+UKsh7gEsCpU+GdOk1A2bj96qWoQTYwwRuY8E1WBd/FEnBCs97JRbgrKhHi/IYch9Zu8yld92gJjH+zoJi1xISb+BvZo/ZNCcG2b8yrAIb/UjrFd4n2h9LkGrHrnDc5CWpH"
+        }
+      }
+    }, {
+      "alias" : "app-certificate-private-key",
+      "chain" : "MIIEQjCCAyqgAwIBAgIJAOjaAur4/1IbMA0GCSqGSIb3DQEBCwUAME8xLjAsBgNVBAMMJUhpZ2hCeXRlL0ludGVsbGlnZW5jZUh1YkAwY2U0YzRlODk1ZmYxEDAOBgNVBAoMB1Vua25vd24xCzAJBgNVBAYTAlVTMB4XDTI2MDkwMTE2MDcwM1oXDTMxMDgzMTE2MDcwM1owTzEuMCwGA1UEAwwlSGlnaEJ5dGUvSW50ZWxsaWdlbmNlSHViQDBjZTRjNGU4OTVmZjEQMA4GA1UECgwHVW5rbm93bjELMAkGA1UEBhMCVVMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDANg86zeRosqwOxjyPvwHd/Ez9nB/2HV1GAfVGDDcbmswIzDuzzW+93z7v+bUKRZBCRZ5bK0Osk1Gm7vu6afr4cqr72AYNFsYtur0kkwhYxzjrq1u3yTgG7PeFxb9eHbT1rgZ8MHRvUefTRcVTFADFN1d+2jBIQlnlkK6HWv+SSdp6lEHr4LpF99U02lWntoiW1eYVcQPxQtodLyIHBL8YMduAcraAo6nihLGuugRqqEIzI9sUcm2dUxiLmOyJjzuNqA6H/yfgyH9U6IOadNwjwH98k3//ACzz92LcEdJT23JuwNzL3FDrg6K5x0P2jbkAt8hpIQxliM2Pc4UR6IGTAgMBAAGjggEfMIIBGzBCBgNVHREEOzA5hil1cm46MGNlNGM0ZTg5NWZmOkhpZ2hCeXRlOkludGVsbGlnZW5jZUh1YoIMMGNlNGM0ZTg5NWZmMAsGA1UdDwQEAwIC9DAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwCQYDVR0TBAIwADAdBgNVHQ4EFgQURfWmKzBv8tBflOCmz4CX5Sr/WV4wfwYDVR0jBHgwdoAURfWmKzBv8tBflOCmz4CX5Sr/WV6hU6RRME8xLjAsBgNVBAMMJUhpZ2hCeXRlL0ludGVsbGlnZW5jZUh1YkAwY2U0YzRlODk1ZmYxEDAOBgNVBAoMB1Vua25vd24xCzAJBgNVBAYTAlVTggkA6NoC6vj/UhswDQYJKoZIhvcNAQELBQADggEBAFUzx/KTr3dk9zXooAYJLPiqwseyGGFYcb3iHNXOCNe3G4FcKvwQU0DRWdsKmy4ze8o+vGZJY2qE8j5LvBgsaoq7baCYMgSDqH3jyvmbgjuWqTxqvp5Y1v8ocsmjopX1faKz2GrTFMgiZQGu4tw5p0NBzbaMxuTtm9TdMTwWGbrRQ5v9aypKW8LMQhcrssJG7ZhUUUlszACyNcS/uqdKXMIXJ/AZh6PdXKgyZshw29Esh6Q0ttkGeeqv4PxVu1V8RAGWFlDoNN0EF+cSrZf+ZlAlZ51yYM65TE2us3Gq57X2/OJxtjor0iN8MbeNKzNZHzmxBQmL8ER2xYiVYFIkHkQ=",
+      "encryptKey" : {
+        "type" : "Encrypted",
+        "value" : {
+          "keyId" : "76WRCZJFwkfWeN0geqRnMg==",
+          "iv" : "5cNW/As3kXrXtqWltEI1lw==",
+          "ciphertext" : "yzgJ53Ex9Nm+H26HWPH11nveklk4iD/D+UxVyEWVuYfjrwWUu/Xw+BfVZEEl0CVep6BkqG2hJSdnaeL/QhUkBqbhr1sfp6erPx2jq+/WK/e+kTlUVoO/MrcPx6+EGqe5cPja0U9PgwYEcnscDhI21Lddj7MxeeFxPfcIfDvGRTPD+NUZTWsA8bh+AteNXCVHKP8uPTt4k0kW5R1FskuYtKNvg2aBkLdE+zV3NoQvTcHZDlW5O3T7bq9tIHSwNg2v4AfYrwTqtVq/kMBvsQbTaqtBYqKHGlkcsE/QsS6lhPxQryC8yZKdtJ6CazDa23eOL4TfdPyucWkWwZ3ybVFZEH9pqeOuBupjRYjJs43cWxaDGFW/9CkXy97mzZj9XnpaP362WjGIRWd3Aay8zlO44dEMljh2fIQl2YzbOi7QNJ0FKa15yK3FQz2XiTyHmnI1DITVd1YTyjaRQKN/xW4t5j3WIl9I7HA/lum6kGIS++Zx/ZvILPQYnUz1jUwOZkfOLAQzCd2ZLzEEi8E09jH4nPnY3p/yxOvXJen76AKloqhx8/AS6Qd+dDu3PGstX7BMhHgBHDZ1JNNPRaU42HteUCi6B8sLH/hY0u0xFBehLVXaZxgg4of0kz6saWQBAbCb91Tz47/t92AoCRVP6nb4+ubHjPRRDmE3k5hXiVs6lLUGl1QD0+iHvKWJ0bcBhzaqndyGiX27Lxcxm+Hro28+OEIwduWpneTszuxyNw7+hyJr6WsGiNnkeMCnipua04QJ0hpMWcQPscBq9Mwo3lhSFeACfP1MsKqz67buLSvRnovMmWIapRhgLJD2o204Daku7LjTuzss34QMsszVTe9bUt64FTIIA2qJXdrgmH2JvShaMao8rjxL/jA481lnfhbmm2VLmvPAeJdA12UB37zXrVxVAFxbirrWVVU8HX9N0saaxTP1Ex/ZJmcG5w+fxpMRKKfOiEuR7HLlWrURqqKrvuWh39Ex9V2OYbFVpoHLg/MLPhXEHr6J8yv9BLniOwHN1/E/y+AKpaAy7rKZ3Eqnc6O2oXyRIrKqaPF97lQusVU5Z0ZEQH04dRCrzt/uHcGgkuBQi41/74mMVoPyNdTUmaUlTkeEtInUPzCunKYcL9XysxRUzgmWy/qJegn0CIkqDV7LY14u2pzN/y8Ldr+rO6dKem9Tvzsz5tOOjMETlTexhRFqSu97fl1OtPV6w01IfbpYhqycKT7L0MKCxv0EERz1lbe9mv8WApDUEGnOtVi9UP59+BSw2p0wy8UdJp68I/R/7OvGSwddivT2ftrWPWjKbdCN/kII7Svk3lOnNy0PhU90pJYyD4sC8S+8LxwqoWlGf7HxN53muk41HvAg1B9S9vjuWf1rL9xUd2TYKev4xABYCZJe66bvPCm9rCvfV/iaBbo8EWH5JTfvtTGq2lWVwAsQX3xJayLqubRVm9mNDOG3dxjX20PgdINJ1fXO3Azi9JSmmiKaTZ9jMmx6tbaBkWXca8Rt8JLDlp4qtmvOhyZvGTsTbgoUmENT/m3aaCo9WXS8GXWlUJYS3FkOZKqE1s+rMtaAXWq7qW69IQyaezSvgdCfDVNCaRbcetDVtbSSjfI3qIW71e6lJ7ULecUJ6dYzYE7CxjBeBehAnS2OLIINyl/vHFvXSC39RKYuhhrpuCmn9O1W/dY8e6Cdb+X87zm4McZ5Ota89HUBt4Tp7ighfJsG5vEmCrgdGut7BsLZQGHnfM14dc5EvyXfUXkIeTMaqOakE4lAV7lhyDY+PqwTlMATWo+RHZRo+sxauYnrbVcw5GoQ3CvMNCW8WdmsWL62y/LAFi0oyEaoC8epL+zmya4Gua/VusmXCA6LQ8HT9qXl6HkGCX+hHj1SdNIB7QBFdTBoZReWxYeCnr9qPJCOKj6AOnqlW6GIy8GvIou16akiiTrJKQsy5ssHY8KH81QHgCxeLfDFhSUBwMTv7SY86j48UiPdkq9rj9Cf8pLav+V3/lViU82Ov4p1uQX48F70nJAw/mz1iRlN9zsuNcpmV+w8GskHn7aHuG9g053zBaX3KKAINAHhW6yNIDUQWC83O835Eq2ZPPSa6g8QpmMSodBKWpdUUftKgyIpbbsf1trNsQ1WbifHOM4CseEu03QhB8KIDFs4fc/8B1auJBAtcvkVVfmi+FmPrwfC"
+        }
+      }
+    } ],
+    "settings" : {
+      "version" : 2,
+      "directories" : { },
+      "api" : {
+        "sessionTimeout" : {
+          "duration" : 8,
+          "units" : "Hours"
+        },
+        "authenticationPreference" : "STAY_LOGGED_IN",
+        "allowedOrigins" : [ ]
+      },
+      "configuration" : {
+        "scheme" : "http",
+        "schemeCertificate" : "ssl-certificate-private-key",
+        "port" : 45245,
+        "centralConfig" : false,
+        "autoSaveIntervalSeconds" : 60,
+        "backupCopies" : 50,
+        "highByteNamespace" : "enabled",
+        "hubName" : ""
+      },
+      "hbMqttBroker" : {
+        "enabled" : true,
+        "allowAnonymous" : true,
+        "endpoints" : [ {
+          "hostname" : "0.0.0.0",
+          "port" : 1885,
+          "useSSL" : false,
+          "certificateKeyAlias" : "",
+          "protocol" : "mqtt.tcp"
+        }, {
+          "hostname" : "0.0.0.0",
+          "port" : 1886,
+          "useSSL" : false,
+          "certificateKeyAlias" : "",
+          "protocol" : "mqtt.ws"
+        } ]
+      },
+      "httpServer" : {
+        "hostname" : "0.0.0.0",
+        "port" : 8885,
+        "useHttps" : false,
+        "schemeCertificate" : "",
+        "allowAnonymous" : false,
+        "authenticationModes" : [ "API_KEY" ]
+      },
+      "serversConfig" : {
+        "i3xServer" : {
+          "enabled" : false
+        },
+        "mcpServer" : {
+          "enabled" : false,
+          "configTools" : "disabled",
+          "toolRefreshPeriod" : {
+            "duration" : 5,
+            "units" : "Minutes"
+          }
+        },
+        "restDataServer" : {
+          "enabled" : false
+        }
+      },
+      "log" : {
+        "debugLogging" : "NONE",
+        "fileSizeMB" : 100,
+        "logAuditEvents" : false
+      },
+      "redundancy" : {
+        "backup" : {
+          "enabled" : false,
+          "primary" : {
+            "uri" : "http://localhost:45248",
+            "pingIntervalSeconds" : 1,
+            "pingAttempts" : 1,
+            "pingRequestTimeoutSeconds" : 1
+          }
+        }
+      },
+      "expressionEngine" : {
+        "allowExpressionEval" : true,
+        "allowEnvironmentVariables" : true,
+        "expressionEngineTimeoutSeconds" : 10,
+        "hubBindingName" : "hub",
+        "allowExpressionImports" : true
+      },
+      "backup" : {
+        "mode" : "disabled",
+        "cronSchedule" : "0 3 * * *",
+        "repo" : {
+          "type" : "git",
+          "name" : "HubBackup",
+          "uri" : "https://github.com/glenwirth/HighByteBackup.git",
+          "author" : "HighByte IntelligenceHub",
+          "email" : "glen.wirth@highbyte.com",
+          "auth" : {
+            "type" : "pass",
+            "username" : "glen.wirth@highbyte.com",
+            "password" : {
+              "type" : "Encrypted",
+              "value" : {
+                "keyId" : "76WRCZJFwkfWeN0geqRnMg==",
+                "iv" : "CAgxwIe9nLHqiPjrVdmNcQ==",
+                "ciphertext" : "eFR+G2pfmjVoM6P2/xSrwjkOMLgDFxVVoY04j8G2KDU3+a3WPXSUGU5n0xGK07FE"
+              }
+            }
+          }
+        },
+        "branch" : "main",
+        "deployFile" : "intelligencehub-deployment_PrimaryHub.json"
+      }
+    }
+  }
+}
