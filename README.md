@@ -1,11 +1,11 @@
-This example show how a primary and secondary base configuration can be setup.  The only difference between the 2 deployments are the Redundancy system settings for the secondary hub.  This version 4.5 deployment can used by anyone since this is a public repository.
+This example shows how a primary and secondary base configuration can be setup as deployment packages.  The only difference between the 2 deployments are the Redundancy system settings for the secondary hub.  This version 4.5 deployment can used by anyone since this is a public repository.
 
 To deploly, follow these steps.
 
 1) Install version 4.5
 2) Download deployment-settings_PrimaryHub.json, deployment-settings_SecondaryHub and intelligencehub-certificatestore.pkcs12 and place them into your appData folder.
 3) Set the HIGHBYTE_DEPLOYMENT_FILE environment variable to the path and deployment settings that you want to deploy.  E.g. C:\Installs\HighByte\appData\deployment-settings_PrimaryHub.json
-4) Start Intelligence Hub.   The deployment will happen before the hub starts.
+4) Start Intelligence Hub. The deployment will happen before the hub starts.
 
 Note: 
 
