@@ -1,0 +1,32 @@
+{
+	"version": 0,
+	"repos": [
+		{
+			"type": "git",
+			"uri": "https://github.com/glenwirth/HighByteRedundancy.git",
+			"name": "HighByteRedundancy",
+			"author": "Glen WIrth",
+			"email": "glen.wirth@highbyte.com"
+		}
+	],
+	"fragments": [
+		{
+			"details": {
+				"type": "git",
+				"deployFile": "intelligencehub-deployment_PrimaryHub.json",
+				"repoName": "HighByteRedundancy",
+				"ref": "main"
+			},
+			"keyPaths": []
+		},
+		{
+			"details": {
+				"type": "git",
+				"deployFile": "intelligencehub-deployment_SecondaryHub.json",
+				"repoName": "HighByteRedundancy",
+				"ref": "main"
+			},
+			"keyPaths": [ ".system.settings.redundancy.backup" ]
+		}
+	]
+}
